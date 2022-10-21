@@ -1,0 +1,8 @@
+Django==3.1
+gunicorn==20.0.4
+psycopg2-binary==2.8.5
+
+big-O-calculator==0.0.9.8.4
+black==22.10.0
+pandas==1.5.1
+Faker==15.1.1
