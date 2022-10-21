@@ -10,7 +10,7 @@ FOLDER_LOCATION_CSV = os.path.join(os.path.dirname(__file__), "csv_processed/")
 
 # Here we generate fake data.
 # If you want more or less data just change the value num.
-fake_data = pd.DataFrame(make_music(num=1000))
+fake_data = pd.DataFrame(make_music(num=2000))
 fake_data.to_csv(FOLDER_LOCATION + "fake_data.csv")
 
 
@@ -23,7 +23,7 @@ def csv_processer(array: str = None):
     file_name = shortuuid.uuid()
 
     # We read the csv file to be processed
-    data = pd.read_csv(FOLDER_LOCATION + "fake_data.csv", chunksize=1000)
+    data = pd.read_csv(FOLDER_LOCATION + "fake_data.csv", chunksize=2000)
 
     columns = ["Song Name", "Date", "Number of Plays"]
     header = True

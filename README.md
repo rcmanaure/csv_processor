@@ -13,7 +13,7 @@ docker exec -it <container_id> python manage.py createsuperuser
 # module/function which takes a CSV file of the following format as its input, processes it and generates the output CSV file.
 
 ## To run the function csv processor:
-##### The "csv_processor.py" file use pandas to process the csv file. In some case is better usar spark o dask to improve the performance because dask (https://www.dask.org/get-started) provides advanced parallelism.
+##### The "csv_processor.py" file use pandas to process the csv file. In some case is better usar spark o dask to improve the performance for example dask (https://www.dask.org/get-started) provides advanced parallelism.
 
 Run the "csv_processor.py" file to generate a fake data to be processed and saved in the folder
 csv. The data processed is saved in the csv folder. 
