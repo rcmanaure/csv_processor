@@ -17,4 +17,7 @@ Run the "csv_processor.py" file to generate a fake data to be processed and save
 csv. The data processed is saved in the csv folder.
 
 The fake data can be updated to generata more data. If you want more or less data just change the value num,
-in the "csv_processor.py" file line 14.
+in the "app/csv_processor.py" file line 14.
+
+## To run the complexity calculator:
+Run the "app/complexity_calculator.py" file.
