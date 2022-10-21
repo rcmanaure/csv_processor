@@ -1,6 +1,6 @@
 from bigO import BigO
 
-from app.csv_processer import csv_processer
+from app.csv_processor import csv_processer
 
 # A big-O calculator to estimate time complexity of sorting functions.
 # You can test time complexity, calculate runtime, etc
