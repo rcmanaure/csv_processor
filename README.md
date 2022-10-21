@@ -23,7 +23,7 @@ in the "app/csv_processor.py" file line 14.
 #### The files can be run directly from the terminal follow this steps:
 * Create and run a virtual enviroment to install the dependencies.
 * Install the requirements.py file with the command: pip install -r requirements.txt
-* Go to the folder app and run the files as described above with the command:python name_file.py
+* Go to the folder app and run the files as described above with the command:  python name_file.py
 
 ## To run the complexity calculator:
 Run the "app/complexity_calculator.py" file.
