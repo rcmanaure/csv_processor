@@ -1,4 +1,3 @@
-import os
 import random
 
 import faker
@@ -7,7 +6,6 @@ from faker_music import MusicProvider
 # create some fake data
 fake = faker.Faker()
 fake.add_provider(MusicProvider)
-FOLDER_LOCATION = os.path.join(os.path.dirname(__file__), "csv/")
 
 
 def make_music(num):

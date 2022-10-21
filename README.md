@@ -20,7 +20,7 @@ csv. The data processed is saved in the csv folder.
 
 The fake data can be updated to generata more data. If you want more or less data just change the value num,
 in the "app/csv_processor.py" file line 14.
-#### The files can be run directly from the terminal follow this steps:
+#### To run the files directly from the terminal, follow this steps:
 * Create and run a virtual enviroment to install the dependencies.
 * Install the requirements.py file with the command: pip install -r requirements.txt
 * Go to the folder app and run the files as described above with the command:  python name_file.py
