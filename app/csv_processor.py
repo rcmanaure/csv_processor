@@ -1,5 +1,4 @@
 import os
-import uuid
 
 import pandas as pd
 import shortuuid
@@ -11,7 +10,7 @@ FOLDER_LOCATION_CSV = os.path.join(os.path.dirname(__file__), "csv/")
 
 # Here we generate fake data.
 # If you want more or less data just change the value num.
-fake_data = pd.DataFrame(make_music(num=50))
+fake_data = pd.DataFrame(make_music(num=500))
 fake_data.to_csv(FOLDER_LOCATION + "fake_data.csv")
 
 
@@ -24,7 +23,7 @@ def csv_processer(array: str = None):
     file_name = shortuuid.uuid()
 
     # We read the csv file to be processed
-    data = pd.read_csv(FOLDER_LOCATION + "fake_data.csv", chunksize=100)
+    data = pd.read_csv(FOLDER_LOCATION + "fake_data.csv", chunksize=1000)
 
     columns = ["Song Name", "Date", "Number of Plays"]
     header = True
@@ -42,8 +41,8 @@ def csv_processer(array: str = None):
         )
 
         # If you want create id for block of chunk.
-        # myuuid = uuid.uuid4()
-        # dfr["chunk_id"] = myuuid
+        # This work when the file is too big and can be later more cleaned.
+        dfr["chunk_id"] = shortuuid.uuid()
 
         # Here we save the cleaned csv file with unique filename.
         dfr.to_csv(
@@ -52,8 +51,12 @@ def csv_processer(array: str = None):
             header=header,
             sep="\t",
         )
+
     if array is None:
-        print(f"Clean data saved: {FOLDER_LOCATION_CSV}")
+        # to check the memory usage.
+        print(dfr.memory_usage(index=False, deep=True) / df.shape[0])
+        # To see the folder localtion and file name
+        print(f"Clean data saved: {FOLDER_LOCATION_CSV}{file_name}")
 
 
 # Run the python file to process the csv file generated with fake data.
@@ -61,6 +64,6 @@ csv_processer()
 
 
 # Manera de optimizar:
-# - usar spark
+# - usar spark o dask
 # - que el formato sea parquet y no csv
 # - particionar la data en archivos por fecha de extraccion
