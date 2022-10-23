@@ -3,6 +3,7 @@ from upload.views import (
     ChunkedUploadDemo,
     MyChunkedUploadView,
     MyChunkedUploadCompleteView,
+    download_file,
 )
 
 urlpatterns = [
@@ -15,4 +16,5 @@ urlpatterns = [
     path(
         "api/chunked_upload/", MyChunkedUploadView.as_view(), name="api_chunked_upload"
     ),
+    path("download/", download_file, name="download"),
 ]

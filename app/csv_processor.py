@@ -58,6 +58,7 @@ def csv_processer(file, array: str = None):
             print(dfr.memory_usage(index=False, deep=True) / df.shape[0])
             # To see the folder localtion and file name
             print(f"Clean data saved: {FOLDER_LOCATION_CSV}{file_name}.csv")
+        return file_name
     except:
         logging.error(
             f"Error processing the csv file. Check if the columns are {columns}"
