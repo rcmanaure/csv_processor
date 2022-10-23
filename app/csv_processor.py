@@ -10,11 +10,11 @@ FOLDER_LOCATION_CSV = os.path.join(os.path.dirname(__file__), "csv_processed/")
 
 # Here we generate fake data.
 # If you want more or less data just change the value num.
-fake_data = pd.DataFrame(make_music(num=2000))
-fake_data.to_csv(FOLDER_LOCATION + "fake_data.csv")
+# fake_data = pd.DataFrame(make_music(num=2000))
+# fake_data.to_csv(FOLDER_LOCATION + "fake_data.csv")
 
 
-def csv_processer(array: str = None):
+def csv_processer(file, array: str = None):
     """
     Function which takes a CSV file of the following format as its input,
     processes it and generates the output CSV file. Using pandas library.
@@ -23,7 +23,8 @@ def csv_processer(array: str = None):
     file_name = shortuuid.uuid()
 
     # We read the csv file to be processed
-    data = pd.read_csv(FOLDER_LOCATION + "fake_data.csv", chunksize=2000)
+    # data = pd.read_csv(FOLDER_LOCATION + "fake_data.csv", chunksize=1000)
+    data = pd.read_csv(file, chunksize=1000)
 
     columns = ["Song Name", "Date", "Number of Plays"]
     header = True
@@ -41,7 +42,7 @@ def csv_processer(array: str = None):
         )
 
         # If you want create id for block of chunk.
-        # This work when the file is too big and can be later more cleaned.
+        # In case the file is too large and can be cleaned or filtered more deeply.
         # dfr["chunk_id"] = shortuuid.uuid()
 
         # Here we save the cleaned csv file with unique filename.
@@ -55,4 +56,4 @@ def csv_processer(array: str = None):
 
 
 # Run the python file to process the csv file generated with fake data.
-csv_processer()
+# csv_processer()

@@ -6,3 +6,4 @@ big-O-calculator==0.0.9.8.4
 black==22.10.0
 pandas==1.5.1
 Faker==15.1.1
+django-chunked-upload==2.0.0

@@ -1,13 +1,40 @@
-from django.shortcuts import render
-from django.core.files.storage import FileSystemStorage
+from chunked_upload.views import ChunkedUploadCompleteView, ChunkedUploadView
+from csv_processor import csv_processer
+from django.views.generic.base import TemplateView
+
+from .models import MyChunkedUpload
 
 
-def image_upload(request):
-    if request.method == "POST" and request.FILES["image_file"]:
-        image_file = request.FILES["image_file"]
-        fs = FileSystemStorage()
-        filename = fs.save(image_file.name, image_file)
-        image_url = fs.url(filename)
-        print(image_url)
-        return render(request, "upload.html", {"image_url": image_url})
-    return render(request, "upload.html")
+class ChunkedUploadDemo(TemplateView):
+    template_name = "chunked_upload_demo.html"
+
+
+class MyChunkedUploadView(ChunkedUploadView):
+
+    model = MyChunkedUpload
+    field_name = "the_file"
+
+    def check_permissions(self, request):
+        # Allow non authenticated users to make uploads
+        pass
+
+
+class MyChunkedUploadCompleteView(ChunkedUploadCompleteView):
+
+    model = MyChunkedUpload
+
+    def check_permissions(self, request):
+        # Allow non authenticated users to make uploads
+        pass
+
+    def on_completion(self, uploaded_file, request):
+        csv_processer(uploaded_file)
+
+    def get_response_data(self, chunked_upload, request):
+        return {
+            "message": (
+                f"You successfully uploaded '{chunked_upload.filename}'"
+                f" ({chunked_upload.offset} bytes)! and saved"
+                f" in the DB with the ID {chunked_upload.upload_id}"
+            )
+        }
