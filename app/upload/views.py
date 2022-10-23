@@ -28,7 +28,8 @@ class MyChunkedUploadCompleteView(ChunkedUploadCompleteView):
         pass
 
     def on_completion(self, uploaded_file, request):
-        csv_processer(uploaded_file)
+        if uploaded_file.name.endswith(".csv"):
+            csv_processer(uploaded_file)
 
     def get_response_data(self, chunked_upload, request):
         return {
