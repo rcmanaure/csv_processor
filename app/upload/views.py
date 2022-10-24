@@ -32,24 +32,37 @@ class MyChunkedUploadCompleteView(ChunkedUploadCompleteView):
         pass
 
     def on_completion(self, uploaded_file, request):
+        """
+        Placeholder method to define what to do when upload is complete.
+        """
+        file_id = uploaded_file.file
+        file_id = str(file_id).split("/")
+        file_id = file_id[4].split(".")
+        file_id = file_id[0]
+
         if uploaded_file.name.endswith(".csv"):
-            csv_processer(uploaded_file)
+            csv_processer(uploaded_file, file_id)
 
     def get_response_data(self, chunked_upload, request):
+        """
+        Data for the response. Should return a dictionary-like object.
+        """
         return {
             "message": (
                 f"You successfully uploaded '{chunked_upload.filename}'"
                 f" ({chunked_upload.offset} bytes)! and saved"
-                f" in the DB with the ID {chunked_upload.upload_id}"
+                f" in the DB with the ID {chunked_upload.upload_id}."
+                f" Cleaned File CSV with the ID {chunked_upload.upload_id}"
             )
         }
 
 
 def download_file(request, file):
+    """Download the csv file processed"""
     # Define Django project base directory
     BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     # Define text file name
-    filename = file
+    filename = file + ".csv"
     # Define the full file path
     filepath = BASE_DIR + "/csv_processed/" + filename
     # Open the file for reading content

@@ -16,5 +16,5 @@ urlpatterns = [
     path(
         "api/chunked_upload/", MyChunkedUploadView.as_view(), name="api_chunked_upload"
     ),
-    path("download/", download_file, name="download"),
+    path("download/<str:file>", download_file, name="download"),
 ]

@@ -23,9 +23,18 @@
     <h1 class="title">
         django-chunked-upload
     </h1>
+    <h2 class="title">
+        To download the cleaned file: Go to "localhost:8000/download/{upload_id}"
+    </h2>
 
     {% csrf_token %}
+    <h2 class="title">
+        Upload the file
+    </h2>
     <input id="chunked_upload" type="file" name="the_file">
+
+
+
 
     <p id="progress"></p>
     <div id="messages"></div>
@@ -96,6 +105,7 @@
                 });
             },
         });
+
     </script>
 
 </body>

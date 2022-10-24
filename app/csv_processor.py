@@ -6,7 +6,8 @@ import shortuuid
 
 from utils.fake_dataframe import make_music
 
-FOLDER_LOCATION = os.path.join(os.path.dirname(__file__), "csv_original/")
+
+FOLDER_LOCATION = os.path.join(os.path.dirname(__file__), "fake_csv/")
 FOLDER_LOCATION_CSV = os.path.join(os.path.dirname(__file__), "csv_processed/")
 
 # Here we generate fake data.
@@ -15,18 +16,18 @@ FOLDER_LOCATION_CSV = os.path.join(os.path.dirname(__file__), "csv_processed/")
 # fake_data.to_csv(FOLDER_LOCATION + "fake_data.csv")
 
 
-def csv_processer(file, array: str = None):
+def csv_processer(file, file_id, array: str = None):
     """
     Function which takes a CSV file of the following format as its input,
     processes it and generates the output CSV file. Using pandas library.
     """
 
     # Assign an unique identifier to each clean data file.
-    file_name = shortuuid.uuid()
+    file_name = file_id
 
     # We read the csv file to be processed
     # data = pd.read_csv(FOLDER_LOCATION + "fake_data.csv", chunksize=100000)
-    data = pd.read_csv(file, chunksize=100000)  # Chunks of 100 kB
+    data = pd.read_csv(file, chunksize=100000)
     columns = ["Song Name", "Date", "Number of Plays"]
 
     try:
@@ -58,7 +59,7 @@ def csv_processer(file, array: str = None):
             print(dfr.memory_usage(index=False, deep=True) / df.shape[0])
             # To see the folder localtion and file name
             print(f"Clean data saved: {FOLDER_LOCATION_CSV}{file_name}.csv")
-        return file_name
+
     except:
         logging.error(
             f"Error processing the csv file. Check if the columns are {columns}"
