@@ -5,12 +5,12 @@
     docker-compose up -d --build
 
 
-## To upload the file to the function csv processor:
+## To upload the file:
 
     Go to localhost:8000 and upload a file.
 
 ## To download the cleaned file:
-    Go to localhost:8000/download/<upload_id> and download the file.
+    Go to localhost:8000/download/<upload_id> 
     
 ## To bring the containers down:
     docker-compose down -v
@@ -29,7 +29,7 @@ docker exec -it <container_id> python manage.py createsuperuser
     * Install the requirements.py file with the command: pip install -r requirements.txt
     * Rune python manage.py migrate
     * Run python manage.py runserver
-    * Go to **127.0.0.1:8000** and upload a file.
+    * Go to 127.0.0.1:8000 and upload a file.
 
 ## To run the complexity calculator:
     Run the "app/complexity_calculator.py" file.
